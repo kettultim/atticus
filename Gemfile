@@ -38,6 +38,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 group :development, :test do
   gem 'rspec-rails', '3.2.3'
   gem 'factory_girl_rails', '4.5.0'
+  gem 'dotenv-rails'
+  gem 'pry-rails'
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -53,4 +55,5 @@ group :test do
   gem 'capybara', '2.4.4'
   gem 'database_cleaner', '1.4.1'
   gem 'launchy', '2.4.3'
+  gem 'simplecov', require: false
 end
