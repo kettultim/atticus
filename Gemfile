@@ -2,11 +2,9 @@ source 'https://rubygems.org'
 ruby '2.2.2'
 gem 'rails', '4.2.1'
 
-
 gem 'pg', '0.18.2'    # Database
 gem 'devise', '3.5.1' # User Authentication
-
-
+gem 'pundit', '1.0.1' # User Authorization
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
