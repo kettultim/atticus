@@ -1,5 +1,14 @@
 require 'rails_helper'
 
-RSpec.describe User, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe User, type: :model do
+
+  describe "#admin?" do
+    specify { expect(subject.admin?).to eq(false) }
+
+    context "user has admin role" do
+      let(:user) { create(:user, role: :admin) }
+
+      specify { expect(user.admin?).to eq(true) }
+    end
+  end
 end

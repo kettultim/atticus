@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
   :trackable, :validatable
   # :confirmable, :lockable, :timeoutable and :omniauthable
 
+  has_many :campaigns
+
   def admin?
     role == "admin"
   end
