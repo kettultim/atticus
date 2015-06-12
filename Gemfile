@@ -2,9 +2,9 @@ source 'https://rubygems.org'
 ruby '2.2.2'
 gem 'rails', '4.2.1'
 
-# Database
-gem 'pg'
 
+gem 'pg', '0.18.2'    # Database
+gem 'devise', '3.5.1' # User Authentication
 
 
 
