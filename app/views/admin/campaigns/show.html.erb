@@ -1,0 +1,25 @@
+<h2><%= @campaign.title %></h2>
+
+<h3>Details</h3>
+<%= simple_format(@campaign.details) %>
+
+<h3>Logo</h3>
+<%= image_tag @campaign.logo.url(:thumb) %>
+
+<h3>Banner</h3>
+<%= image_tag @campaign.banner.url(:thumb) %>
+
+<h3>Item Donations</h3>
+<% if @campaign.allow_product_donations %>
+  <p>Product donations ARE allowed.</p>
+<% else %>
+  <p>Product donations are NOT allowed.</p>
+<% end %>
+
+<h3>Publication Status</h3>
+<%= @campaign.publication_status %>
+
+<h3>Actions</h3>
+<%= simple_form_for @campaign do |f| %>
+  <%= f.submit "Update" %>
+<% end %>

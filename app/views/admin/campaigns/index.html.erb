@@ -1,0 +1,13 @@
+<h2>Campaigns</h2>
+
+<table>
+  <tr>
+    <th>Title</th><th>Action</th>
+  </tr>
+  <% @campaigns.each do |campaign| %>
+    <tr class="campaign-<%= campaign.id %>">
+      <td><%= campaign.title %></td>
+      <td><%= link_to :view, admin_campaign_path(campaign) %></td>
+    </tr>
+  <% end %>
+</table>

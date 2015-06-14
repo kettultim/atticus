@@ -6,4 +6,8 @@ class CampaignPolicy < ApplicationPolicy
   def create?
     record.user == user
   end
+
+  def show?
+    user.admin? || record.publication_status == "published"
+  end
 end
