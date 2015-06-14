@@ -1,8 +1,19 @@
 <h2>New Campaign</h2>
 
-<%= form_for @campaign do |f| %>
+<%= simple_form_for @campaign do |f| %>
   <%= f.label :title %>
   <%= f.text_field :title %>
+
+  <%= f.label :details %>
+  <%= f.text_area :details %>
+
+  <%= f.check_box :allow_product_donations %> Allow product donations
+
+  <%= f.label :logo %>
+  <%= f.input :logo, as: :file, label: false %>
+
+  <%= f.label :banner %>
+  <%= f.input :banner, as: :file, label: false %>
 
   <%= f.submit "Create" %>
 <% end %>

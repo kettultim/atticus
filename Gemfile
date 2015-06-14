@@ -5,6 +5,8 @@ gem 'rails', '4.2.1'
 gem 'pg', '0.18.2'    # Database
 gem 'devise', '3.5.1' # User Authentication
 gem 'pundit', '1.0.1' # User Authorization
+gem 'paperclip', '4.2.2' # File Attachments
+gem 'simple_form', '3.1.0'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -34,10 +36,11 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
+  gem 'faker', '1.4.3'
   gem 'rspec-rails', '3.2.3'
   gem 'factory_girl_rails', '4.5.0'
-  gem 'dotenv-rails'
-  gem 'pry-rails'
+  gem 'dotenv-rails', '2.0.1'
+  gem 'pry-rails', '0.3.4'
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -50,6 +53,8 @@ group :development, :test do
 end
 
 group :test do
+
+  gem 'shoulda-matchers', '2.8.0'
   gem 'capybara', '2.4.4'
   gem 'database_cleaner', '1.4.1'
   gem 'launchy', '2.4.3'

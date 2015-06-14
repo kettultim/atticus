@@ -4,6 +4,6 @@ class CampaignPolicy < ApplicationPolicy
   end
 
   def create?
-    user.is_a? User
+    record.user == user
   end
 end
