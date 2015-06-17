@@ -10,4 +10,12 @@ class CampaignPolicy < ApplicationPolicy
   def show?
     user.admin? || record.publication_status == "published"
   end
+
+  def approve?
+    user.admin?
+  end
+
+  def reject?
+    user.admin?
+  end
 end

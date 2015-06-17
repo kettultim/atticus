@@ -20,6 +20,12 @@
 <%= @campaign.publication_status %>
 
 <h3>Actions</h3>
-<%= simple_form_for @campaign do |f| %>
-  <%= f.submit "Update" %>
+<%= form_tag admin_campaign_approval_path(@campaign) do  %>
+  <%= submit_tag "Approve" %>
+<% end %>
+
+<%= form_tag admin_campaign_rejection_path(@campaign) do  %>
+  <%= label_tag :notes, "Notes" %>
+  <%= text_area_tag :notes %>
+  <%= submit_tag "Reject" %>
 <% end %>
