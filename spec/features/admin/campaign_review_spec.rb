@@ -18,5 +18,7 @@ feature "Admin Campaign Review" do
 
     expect(page.current_path).to eq(admin_campaign_path(campaign))
     expect(page).to have_content campaign.title
+
+    save_and_open_page
   end
 end
