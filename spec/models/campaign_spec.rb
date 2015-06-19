@@ -1,4 +1,4 @@
-require "rails_helper"
+require 'rails_helper'
 
 describe Campaign do
   it { should validate_presence_of :title }

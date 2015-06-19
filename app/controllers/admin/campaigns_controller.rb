@@ -23,9 +23,8 @@ class Admin::CampaignsController < ApplicationController
   def load_filters_from_params
     @filters = {}
 
-    if Campaign.valid_publication_status?(params[:publication_status])
-      @filters[:publication_status] = params[:publication_status]
-    end
-  end
+    return unless Campaign.valid_publication_status? params[:publication_status]
 
+    @filters[:publication_status] = params[:publication_status]
+  end
 end

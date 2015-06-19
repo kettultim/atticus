@@ -1,0 +1,27 @@
+inherit_from: .rubocop_todo.yml
+
+AllCops:
+  Include:
+    - '**/Rakefile'
+    - '**/config.ru'
+  Exclude:
+    - 'bin/**/*'
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - !ruby/regexp /old_and_unused\.rb$/
+    - 'spec/spec_helper.rb'
+
+# Offense count: 23
+Style/Documentation:
+  Enabled: false
+
+# Offense count: 4
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+# Offense count: 72
+# Configuration parameters: AllowURI, URISchemes.
+Metrics/LineLength:
+  Max: 80

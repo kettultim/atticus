@@ -5,11 +5,10 @@ FactoryGirl.define do
 
   factory :user do
     email
-    password "testing!"
+    password 'testing!'
 
     factory :admin_user do
-      role "admin"
+      role 'admin'
     end
   end
-
 end

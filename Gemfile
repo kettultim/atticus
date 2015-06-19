@@ -42,6 +42,7 @@ group :development, :test do
   gem 'dotenv-rails', '2.0.1'
   gem 'pry-rails', '0.3.4'
 
+  gem 'rubocop', require: false
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 

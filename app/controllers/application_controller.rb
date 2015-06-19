@@ -10,10 +10,10 @@ class ApplicationController < ActionController::Base
   end
 
   def redirect_non_admins
-    unless current_user.admin?
-      flash[:alert] = "Sorry, but you can't be here!"
-      redirect_to root_path
-    end
+    return if current_user.admin?
+
+    flash[:alert] = "Sorry, but you can't be here!"
+    redirect_to root_path
   end
 
   def current_user
