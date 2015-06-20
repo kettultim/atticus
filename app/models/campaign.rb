@@ -4,6 +4,7 @@ class Campaign < ActiveRecord::Base
   PUBLICATION_STATES = ['review']
 
   belongs_to :user
+  delegate :email, to: :user, prefix: true
 
   has_attached_file :logo,
                     styles: { medium: '300x300#', thumb: '180x180#' },

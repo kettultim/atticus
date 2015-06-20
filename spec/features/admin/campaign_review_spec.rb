@@ -3,6 +3,7 @@ require 'rails_helper'
 feature 'Admin Campaign Review' do
   let(:admin)    { create(:admin_user) }
   let(:notes)    { Faker::Lorem.sentence }
+  let(:mail)     { double("mail", deliver_later: true) }
   let!(:campaign) { create(:campaign_in_review, user_id: admin.id) }
 
   background do
@@ -17,18 +18,21 @@ feature 'Admin Campaign Review' do
   end
 
   scenario 'Approving a campaign' do
+    expect(CampaignMailer).to receive(:approval_notice)
+      .with(campaign.id).and_return(mail)
+
     click_button 'Approve'
 
     campaign.reload
     expect(campaign.publication_status).to eq('published')
 
     expect(current_path).to eq admin_dashboard_path
-
-    pending 'Send approval message to creator'
-    fail
   end
 
   scenario 'Denying a campaign with notes' do
+    expect(CampaignMailer).to receive(:rejection_notice)
+      .with(campaign.id, notes).and_return(mail)
+
     fill_in 'Notes', with: notes
     click_button 'Reject'
 
@@ -36,8 +40,5 @@ feature 'Admin Campaign Review' do
     expect(campaign.publication_status).to eq('draft')
 
     expect(current_path).to eq admin_campaign_path(campaign)
-
-    pending 'Send rejection message to creator'
-    fail
   end
 end

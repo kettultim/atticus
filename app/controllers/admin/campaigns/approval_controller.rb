@@ -5,6 +5,8 @@ class Admin::Campaigns::ApprovalController < ApplicationController
 
     campaign.update_attributes(publication_status: 'published')
 
+    CampaignMailer.approval_notice(campaign.id).deliver_later
+
     redirect_to admin_dashboard_path
   end
 end

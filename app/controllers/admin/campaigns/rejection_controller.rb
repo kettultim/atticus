@@ -5,6 +5,8 @@ class Admin::Campaigns::RejectionController < ApplicationController
 
     campaign.update_attributes(publication_status: 'draft')
 
+    CampaignMailer.rejection_notice(campaign.id, params[:notes]).deliver_later
+
     redirect_to admin_campaign_path(campaign)
   end
 end

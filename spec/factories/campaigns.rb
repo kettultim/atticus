@@ -1,5 +1,6 @@
 FactoryGirl.define do
   factory :campaign do
+    user
     title Faker::Company.catch_phrase
     details Faker::Lorem.paragraphs.join("\n\n")
 
