@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'Admin Campaign Review' do
   let(:admin)    { create(:admin_user) }
   let(:notes)    { Faker::Lorem.sentence }
-  let(:mail)     { double("mail", deliver_later: true) }
+  let(:mail)     { double('mail', deliver_later: true) }
   let!(:campaign) { create(:campaign_in_review, user_id: admin.id) }
 
   background do
