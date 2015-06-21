@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  before_filter :authenticate_user!
+
   def self.admin_only!
     before_filter :redirect_non_admins
   end
@@ -12,7 +14,7 @@ class ApplicationController < ActionController::Base
   def redirect_non_admins
     return if current_user.admin?
 
-    flash[:alert] = "Sorry, but you can't be here!"
+    flash[:alert] = msg(:unauthorized)
     redirect_to root_path
   end
 
@@ -20,11 +22,15 @@ class ApplicationController < ActionController::Base
     super || NullUser.new
   end
 
+  def user_signed_in?
+    User === current_user
+  end
+
   def after_sign_in_path_for(user)
     if user.admin?
       admin_dashboard_path
     else
-      super user
+      dashboard_path
     end
   end
 end
