@@ -14,7 +14,7 @@ class CampaignsController < ApplicationController
 
     if @campaign.save
       flash[:notice] = msg(:campaign_draft)
-      redirect_to root_path
+      redirect_to dashboard_path
     else
       render :new
     end

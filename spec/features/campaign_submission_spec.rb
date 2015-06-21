@@ -6,12 +6,8 @@ feature 'Submitting a campaign for review' do
 
   background do
     login_as user
-
     visit dashboard_path
-
-    within '.drafts' do
-      click_link 'submit for approval'
-    end
+    click_link 'submit for approval'
   end
 
   scenario 'It should be in review' do

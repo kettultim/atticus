@@ -1,44 +1,29 @@
 require 'rails_helper'
 
-feature 'Admin Campaign Review' do
+feature 'Admin rejects a campaign' do
   let(:admin)    { create(:admin_user) }
   let(:notes)    { Faker::Lorem.sentence }
   let(:mail)     { double('mail', deliver_later: true) }
   let!(:campaign) { create(:campaign_in_review, user_id: admin.id) }
 
   background do
-    login_as admin
-    visit admin_dashboard_path
-
-    click_link 'Review Campaigns'
-
-    within ".campaign-#{campaign.id}" do
-      click_link 'view'
-    end
-  end
-
-  scenario 'Approving a campaign' do
-    expect(CampaignMailer).to receive(:approval_notice)
-      .with(campaign.id).and_return(mail)
-
-    click_button 'Approve'
-
-    campaign.reload
-    expect(campaign.publication_status).to eq('published')
-
-    expect(current_path).to eq admin_dashboard_path
-  end
-
-  scenario 'Denying a campaign with notes' do
     expect(CampaignMailer).to receive(:rejection_notice)
       .with(campaign.id, notes).and_return(mail)
 
+    login_as admin
+    visit admin_dashboard_path
+    click_link 'Review Campaigns'
+    click_link 'view'
     fill_in 'Notes', with: notes
     click_button 'Reject'
+  end
 
+  scenario 'It reverts the campaign do a draft' do
     campaign.reload
     expect(campaign.publication_status).to eq('draft')
+  end
 
+  scenario 'It redirects to the admin campaign view' do
     expect(current_path).to eq admin_campaign_path(campaign)
   end
 end
