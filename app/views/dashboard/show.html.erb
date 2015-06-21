@@ -8,7 +8,7 @@
       <td><%= c.title %></td>
       <td>
         <%= link_to 'edit', edit_campaign_path(c) %>
-        <%= link_to 'publish', campaign_publish_path(c), method: :post, confirm: 'Are you sure?' %>
+        <%= link_to 'submit for approval', campaign_submission_path(c), method: :post, confirm: 'Are you sure?' %>
       </td>
     </tr>
   <% end %>

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'Publishing a campaign' do
+feature 'Submitting a campaign for review' do
   let!(:user) { create(:user) }
   let!(:campaign) { create(:campaign, user: user, publication_status: 'draft') }
 
@@ -10,15 +10,20 @@ feature 'Publishing a campaign' do
     visit dashboard_path
 
     within '.drafts' do
-      click_link 'publish'
+      click_link 'submit for approval'
     end
   end
 
-  scenario 'User publishes a campaign' do
+  scenario 'It should be in review' do
     campaign.reload
     expect(campaign.publication_status).to eq('review')
+  end
 
+  scenario 'It displays the campaign review message' do
     expect(page).to have_content(msg(:campaign_review))
+  end
+
+  scenario 'It redirects to the dashboard' do
     expect(current_path).to eq(dashboard_path)
   end
 end

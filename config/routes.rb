@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :campaigns do
-    resource :publish, only: [:create], controller: 'campaigns/publish'
+    resource :submission, only: [:create], controller: 'campaigns/submission'
   end
 
   resource :dashboard, only: [:show], controller: 'dashboard'

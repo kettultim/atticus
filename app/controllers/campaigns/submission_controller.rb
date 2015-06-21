@@ -1,4 +1,4 @@
-class Campaigns::PublishController < ApplicationController
+class Campaigns::SubmissionController < ApplicationController
   before_filter :authenticate_user!
 
   def create
