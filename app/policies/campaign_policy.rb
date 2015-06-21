@@ -26,4 +26,8 @@ class CampaignPolicy < ApplicationPolicy
   def reject?
     user.admin?
   end
+
+  def submit_for_review?
+    record.user == user
+  end
 end

@@ -10,11 +10,11 @@ feature 'Publishing a campaign' do
     visit dashboard_path
 
     within '.drafts' do
-      click_link campaign.title
+      click_link 'edit'
     end
   end
 
-  scenario 'User publishes a campaign' do
+  scenario 'User updates a campaign' do
     fill_in 'Title', with: 'New Title'
     click_button 'Update'
 

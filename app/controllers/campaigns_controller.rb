@@ -1,4 +1,6 @@
 class CampaignsController < ApplicationController
+  before_filter :load_and_authorize_campaign, only: [:edit, :update]
+
   def new
     @campaign = current_user.campaigns.new
     authorize @campaign
@@ -19,32 +21,23 @@ class CampaignsController < ApplicationController
   end
 
   def edit
-    @campaign = current_user.campaigns.find(params[:id])
-    authorize @campaign
   end
 
   def update
-    @campaign = current_user.campaigns.find(params[:id])
-    authorize @campaign
-
-    @campaign.assign_attributes(campaign_params)
-
-    if @campaign.valid?
-      if params[:commit] == 'Publish'
-        @campaign.submit_for_review!
-        flash[:notice] = msg(:campaign_review)
-        redirect_to dashboard_path
-      else
-        @campaign.save
-        flash[:notice] = msg(:campaign_update)
-        redirect_to edit_campaign_path(@campaign)
-      end
+    if @campaign.update_attributes(campaign_params)
+      flash[:notice] = msg(:campaign_update)
+      redirect_to edit_campaign_path(@campaign)
     else
       render :edit
     end
   end
 
   private
+
+  def load_and_authorize_campaign
+    @campaign = current_user.campaigns.find(params[:id])
+    authorize @campaign
+  end
 
   def campaign_params
     params.require(:campaign).permit(:title, :details, :allow_product_donations,

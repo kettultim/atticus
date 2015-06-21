@@ -10,13 +10,11 @@ feature 'Publishing a campaign' do
     visit dashboard_path
 
     within '.drafts' do
-      click_link campaign.title
+      click_link 'publish'
     end
   end
 
   scenario 'User publishes a campaign' do
-    click_button 'Publish'
-
     campaign.reload
     expect(campaign.publication_status).to eq('review')
 

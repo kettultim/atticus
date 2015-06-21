@@ -1,7 +1,7 @@
 class Campaign < ActiveRecord::Base
   validates_presence_of :title, :details
 
-  PUBLICATION_STATES = ['review', 'draft']
+  PUBLICATION_STATES = %w(review draft)
 
   belongs_to :user
   delegate :email, to: :user, prefix: true
@@ -26,6 +26,6 @@ class Campaign < ActiveRecord::Base
 
   def submit_for_review!
     self.publication_status = 'review'
-    self.save
+    save
   end
 end

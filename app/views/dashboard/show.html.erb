@@ -1,7 +1,15 @@
 <h2>Dashboard</h2>
 
-<div class="drafts">
+<table class="drafts table">
+  <tr><th>Campaign Draft</th><th>Actions</th></tr>
+
   <% @drafts.each do |c| %>
-    <%= link_to c.title, edit_campaign_path(c) %>
+    <tr class='campaign-<%= c.id %>'>
+      <td><%= c.title %></td>
+      <td>
+        <%= link_to 'edit', edit_campaign_path(c) %>
+        <%= link_to 'publish', campaign_publish_path(c), method: :post, confirm: 'Are you sure?' %>
+      </td>
+    </tr>
   <% end %>
-</div>
+</table>
