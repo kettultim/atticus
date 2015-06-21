@@ -11,6 +11,14 @@ class CampaignPolicy < ApplicationPolicy
     user.admin? || record.publication_status == 'published'
   end
 
+  def edit?
+    update?
+  end
+
+  def update?
+    user.admin? || record.user == user
+  end
+
   def approve?
     user.admin?
   end

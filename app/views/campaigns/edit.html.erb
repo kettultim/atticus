@@ -1,6 +1,7 @@
-<h2>New Campaign</h2>
+<h2><%= @campaign.title %></h2>
 
 <%= simple_form_for @campaign do |f| %>
   <%= render partial: 'form', locals: { f: f } %>
-  <%= f.submit "Create" %>
+  <%= f.submit "Update" %>
+  <%= f.submit "Publish" %>
 <% end %>

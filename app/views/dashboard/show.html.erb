@@ -1,0 +1,7 @@
+<h2>Dashboard</h2>
+
+<div class="drafts">
+  <% @drafts.each do |c| %>
+    <%= link_to c.title, edit_campaign_path(c) %>
+  <% end %>
+</div>

@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   resources :campaigns
 
+  resource :dashboard, only: [:show], controller: 'dashboard'
+
   namespace :admin do
     resource :dashboard, only: [:show], controller: '/admin/dashboard'
     resources :campaigns do

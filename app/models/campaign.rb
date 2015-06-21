@@ -1,7 +1,7 @@
 class Campaign < ActiveRecord::Base
   validates_presence_of :title, :details
 
-  PUBLICATION_STATES = ['review']
+  PUBLICATION_STATES = ['review', 'draft']
 
   belongs_to :user
   delegate :email, to: :user, prefix: true
@@ -18,7 +18,14 @@ class Campaign < ActiveRecord::Base
 
   validates_attachment_content_type :banner, content_type: %r{\Aimage\/.*\Z}
 
+  scope :drafts, -> { where(publication_status: 'draft') }
+
   def self.valid_publication_status?(status)
     PUBLICATION_STATES.include? status
+  end
+
+  def submit_for_review!
+    self.publication_status = 'review'
+    self.save
   end
 end
