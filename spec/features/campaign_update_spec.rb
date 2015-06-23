@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'User updates a campaign' do
+feature 'Submitting the campaign edit form' do
   let!(:user) { create(:user) }
   let!(:campaign) { create(:campaign, user: user, publication_status: 'draft') }
 
@@ -15,19 +15,19 @@ feature 'User updates a campaign' do
     campaign.reload
   end
 
-  scenario 'It maintains the draft state' do
+  scenario 'maintains the draft state' do
     expect(campaign.publication_status).to eq('draft')
   end
 
-  scenario 'It updates the title' do
+  scenario 'updates the title' do
     expect(campaign.title).to eq('New Title')
   end
 
-  scenario 'It displays the campaign update message' do
+  scenario 'displays the campaign update message' do
     expect(page).to have_content(msg(:campaign_update))
   end
 
-  scenario 'It redirects to the edit form' do
+  scenario 'redirects to the edit form' do
     expect(current_path).to eq(edit_campaign_path(campaign))
   end
 end

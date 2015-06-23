@@ -3,7 +3,7 @@ class Admin::Campaigns::ApprovalController < ApplicationController
     campaign = Campaign.find(params[:campaign_id])
     authorize campaign, :approve?
 
-    campaign.update_attributes(publication_status: 'published')
+    campaign.update_attributes(publication_status: 'approved')
 
     CampaignMailer.approval_notice(campaign.id).deliver_later
 

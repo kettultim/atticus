@@ -2,6 +2,6 @@ class DashboardController < ApplicationController
   before_filter :authenticate_user!
 
   def show
-    @drafts = current_user.campaigns.drafts
+    @campaigns = current_user.campaigns
   end
 end

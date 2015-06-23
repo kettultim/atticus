@@ -16,8 +16,8 @@ describe CampaignMailer do
       expect(last_email.subject).to include(campaign.title)
     end
 
-    it 'includes a link to the campaign' do
-      expect(last_email.body).to have_content(campaign_url(campaign))
+    it 'includes a link to the dashboard' do
+      expect(last_email.body).to have_content(dashboard_url)
     end
   end
 

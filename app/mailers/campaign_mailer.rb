@@ -1,7 +1,7 @@
 class CampaignMailer < ApplicationMailer
   def approval_notice(campaign_id)
     @campaign = Campaign.find(campaign_id)
-    @url = campaign_url(@campaign)
+    @url = dashboard_url
 
     subject = "Your campaign #{@campaign.title} has been approved!"
 

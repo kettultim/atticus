@@ -19,6 +19,12 @@
 <h3>Publication Status</h3>
 <%= @campaign.publication_status %>
 
+<h3>Funding Goal</h3>
+<%= Money.new(@campaign.funding_goal * 100, 'USD').format %>
+
+<h3>Duration</h3>
+<%= @campaign.duration %> days
+
 <h3>Actions</h3>
 <%= form_tag admin_campaign_approval_path(@campaign) do  %>
   <%= submit_tag "Approve" %>

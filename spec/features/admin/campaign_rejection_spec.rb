@@ -18,12 +18,12 @@ feature 'Admin rejects a campaign' do
     click_button 'Reject'
   end
 
-  scenario 'It reverts the campaign do a draft' do
+  scenario 'reverts the campaign to a draft' do
     campaign.reload
     expect(campaign.publication_status).to eq('draft')
   end
 
-  scenario 'It redirects to the admin campaign view' do
+  scenario 'redirects to the admin campaign view' do
     expect(current_path).to eq admin_campaign_path(campaign)
   end
 end

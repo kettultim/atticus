@@ -8,7 +8,7 @@ class CampaignPolicy < ApplicationPolicy
   end
 
   def show?
-    user.admin? || record.publication_status == 'published'
+    user.admin? || record.published?
   end
 
   def edit?
@@ -16,7 +16,7 @@ class CampaignPolicy < ApplicationPolicy
   end
 
   def update?
-    user.admin? || record.user == user
+    user.admin? || (record.user == user && !record.published?)
   end
 
   def approve?
@@ -29,5 +29,9 @@ class CampaignPolicy < ApplicationPolicy
 
   def submit_for_review?
     record.user == user
+  end
+
+  def launch?
+    record.user == user && record.approved?
   end
 end

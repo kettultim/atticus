@@ -1,0 +1,7 @@
+<h2><%= @campaign.title %></h2>
+
+<%= simple_format(@campaign.details) %>
+
+<%= money(@campaign.funding_goal) %>
+
+<%= campaign_expiration_message(@campaign.expires_at) %>

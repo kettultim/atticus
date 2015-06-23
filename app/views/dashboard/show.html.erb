@@ -3,14 +3,16 @@
 <%= link_to 'New Campaign', new_campaign_path %>
 
 <table class="drafts table">
-  <tr><th>Campaign Draft</th><th>Actions</th></tr>
+  <tr><th>Campaign</th><th>Actions</th></tr>
 
-  <% @drafts.each do |c| %>
+  <% @campaigns.each do |c| %>
     <tr class='campaign-<%= c.id %>'>
       <td><%= c.title %></td>
       <td>
-        <%= link_to 'edit', edit_campaign_path(c) %>
-        <%= link_to 'submit for approval', campaign_submission_path(c), method: :post, confirm: 'Are you sure?' %>
+        <%= link_to 'edit', edit_campaign_path(c) if c.draft? || c.approved? %>
+        <%= link_to 'submit for approval', campaign_submission_path(c), method: :post, confirm: 'Are you sure?' if c.draft? %>
+        <%= link_to 'launch', campaign_launch_path(c), method: :post, confirm: 'Are you sure?' if c.approved? %>
+        <%= "UNDER REVIEW" if c.review? %>
       </td>
     </tr>
   <% end %>

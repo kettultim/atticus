@@ -1,5 +1,6 @@
 class CampaignsController < ApplicationController
   before_filter :load_and_authorize_campaign, only: [:edit, :update]
+  skip_before_filter :authenticate_user!, only: [:show]
 
   def new
     @campaign = current_user.campaigns.new
@@ -32,6 +33,11 @@ class CampaignsController < ApplicationController
     end
   end
 
+  def show
+    @campaign = Campaign.find(params[:id])
+    authorize @campaign
+  end
+
   private
 
   def load_and_authorize_campaign
@@ -41,6 +47,6 @@ class CampaignsController < ApplicationController
 
   def campaign_params
     params.require(:campaign).permit(:title, :details, :allow_product_donations,
-                                     :logo, :banner)
+                                     :logo, :banner, :duration, :funding_goal)
   end
 end

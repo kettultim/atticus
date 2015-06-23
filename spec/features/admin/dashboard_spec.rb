@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-feature 'Admin dashboard' do
-  context 'regular user' do
+feature 'Visiting the admin dashboard' do
+  context 'as a regular user' do
     let(:user) { create(:user) }
 
     background do
@@ -9,11 +9,11 @@ feature 'Admin dashboard' do
       visit admin_dashboard_path
     end
 
-    scenario 'It redirects to the homepage' do
+    scenario 'redirects to the homepage' do
       expect(current_path).to eq(root_path)
     end
 
-    scenario 'It displays an error' do
+    scenario 'displays an error' do
       expect(page).to have_content(msg(:unauthorized))
     end
   end

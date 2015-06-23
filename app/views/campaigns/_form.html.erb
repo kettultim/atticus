@@ -11,3 +11,9 @@
 
 <%= f.label :banner %>
 <%= f.input :banner, as: :file, label: false %>
+
+<%= f.label :duration %>
+<%= f.select(:duration, options_for_select(['30 days', 30], ['60 days', 60])) %>
+
+<%= f.label :funding_goal %>
+<%= f.number_field :funding_goal, in: 1..1_000_000, step: 1 %>

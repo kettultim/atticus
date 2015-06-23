@@ -14,14 +14,15 @@ feature 'Admin approves a campaign' do
     click_link 'Review Campaigns'
     click_link 'view'
     click_button 'Approve'
-  end
 
-  scenario 'The campaign is published' do
     campaign.reload
-    expect(campaign.publication_status).to eq('published')
   end
 
-  scenario 'It redirects to the admin dashboard' do
+  scenario 'updates the publication_status to "approved"' do
+    expect(campaign.publication_status).to eq('approved')
+  end
+
+  scenario 'redirects to the admin dashboard' do
     expect(current_path).to eq admin_dashboard_path
   end
 end

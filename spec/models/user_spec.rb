@@ -2,12 +2,12 @@ require 'rails_helper'
 
 describe User, type: :model do
   describe '#admin?' do
-    specify { expect(subject.admin?).to eq(false) }
+    specify { expect_it.to_not be_admin }
 
     context 'user has admin role' do
-      let(:user) { create(:user, role: :admin) }
+      subject { create(:user, role: :admin) }
 
-      specify { expect(user.admin?).to eq(true) }
+      specify { expect_it.to be_admin }
     end
   end
 end
