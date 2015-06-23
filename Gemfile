@@ -11,6 +11,7 @@ gem 'sidekiq', '3.4.1' # Queuing for background jobs and mailers
 gem 'money', '6.5.1' # Easy formatting for money fields
 
 
+gem 'bootstrap-sass', '~> 3.3.5'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
