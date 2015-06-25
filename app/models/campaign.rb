@@ -13,7 +13,6 @@ class Campaign < ActiveRecord::Base
     PUBLICATION_STATES.include? status
   end
 
-
   belongs_to :user
   delegate :email, to: :user, prefix: true
 

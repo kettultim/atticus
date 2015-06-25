@@ -9,21 +9,21 @@ describe CampaignExpirationWorker do
       Campaign.stub(find: campaign)
     end
 
-    it "loads the campaign" do
+    it 'loads the campaign' do
       expect(Campaign).to receive(:find).with(campaign.id).and_return(campaign)
       subject.perform(campaign.id)
     end
 
-    it "sets the status to expired" do
+    it 'sets the status to expired' do
       subject.perform(campaign.id)
       expect(campaign.publication_status).to eq('expired')
     end
 
-    it "saves the campaign" do
+    it 'saves the campaign' do
       expect(campaign).to receive(:save).and_return(true)
       subject.perform(campaign.id)
     end
 
-    it "notifies the creator"
+    it 'notifies the creator'
   end
 end

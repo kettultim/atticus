@@ -19,24 +19,24 @@ describe Campaign do
       Timecop.return
     end
 
-    it "sets the published_at attribute" do
+    it 'sets the published_at attribute' do
       subject.publish!
       expect(subject.published_at).to eq Time.now
     end
 
-    it "publishes the campaign" do
+    it 'publishes the campaign' do
       subject.publish!
       expect_it.to be_published
     end
 
-    it "sets the expires_at attribute" do
+    it 'sets the expires_at attribute' do
       subject.publish!
       expect(subject.expires_at).to eq expires_at
     end
 
-    it "schedules the expiration" do
+    it 'schedules the expiration' do
       expect(CampaignExpirationWorker).to receive(:perform_at)
-       .with(expires_at, subject.id)
+        .with(expires_at, subject.id)
       subject.publish!
     end
   end

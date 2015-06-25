@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
   end
 
   def user_signed_in?
-    User === current_user
+    current_user.is_a? User
   end
 
   def after_sign_in_path_for(user)
