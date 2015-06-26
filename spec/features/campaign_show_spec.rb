@@ -22,6 +22,7 @@ feature 'Viewing a campaign' do
     expect(page).to have_content campaign.title
     expect(page).to have_content campaign.details
     expect(page).to have_content Money.new(campaign.funding_goal * 100, 'USD')
-    expect(page).to have_content CampaignExpirationMessage.new(campaign)
+    expect(page).to have_content(
+      ExpirationMessage.new(campaign.expires_at))
   end
 end

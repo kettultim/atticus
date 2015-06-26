@@ -1,12 +1,9 @@
-class CampaignExpirationMessage
-  attr_reader :campaign
+class ExpirationMessage
+  attr_reader :duration, :date
 
-  def initialize(campaign)
-    @campaign = campaign
-  end
-
-  def duration
-    @duration ||= Duration.new(campaign.expires_at.to_time - Time.now)
+  def initialize(date)
+    @date = date
+    @duration = Duration.new(date.to_time - Time.now)
   end
 
   def to_s
@@ -20,7 +17,7 @@ class CampaignExpirationMessage
   private
 
   def ended
-    "Ended on #{campaign.expires_at.strftime('%B %e, %Y')}"
+    "Ended on #{date.strftime('%B %e, %Y')}"
   end
 
   def seconds
