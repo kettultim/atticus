@@ -9,7 +9,7 @@ gem 'paperclip', '4.2.2' # File Attachments
 gem 'simple_form', '3.1.0' # Nicer form field helpers
 gem 'sidekiq', '3.4.1' # Queuing for background jobs and mailers
 gem 'money', '6.5.1' # Easy formatting for money fields
-
+gem 'ruby-duration', '3.2.1' # Time conversion
 
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'sass-rails', '~> 5.0'

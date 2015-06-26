@@ -4,4 +4,4 @@
 
 <%= money(@campaign.funding_goal) %>
 
-<%= campaign_expiration_message(@campaign.expires_at) %>
+<%= CampaignExpirationMessage.new(@campaign) %>
