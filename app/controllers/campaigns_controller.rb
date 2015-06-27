@@ -46,7 +46,8 @@ class CampaignsController < ApplicationController
   end
 
   def campaign_params
-    params.require(:campaign).permit(:title, :details, :allow_product_donations,
-                                     :logo, :banner, :duration, :funding_goal)
+    params.require(:campaign).permit(
+      :title, :details, :banner, :logo, :duration, :allow_product_donations,
+      :funding_goal, :zip_code)
   end
 end

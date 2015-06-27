@@ -7,5 +7,7 @@ class CampaignExpirationWorker
 
     campaign.publication_status = 'expired'
     campaign.save
+
+    CampaignMailer.expiration_notice(campaign_id).deliver_later
   end
 end

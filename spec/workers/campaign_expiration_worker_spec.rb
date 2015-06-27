@@ -3,10 +3,14 @@ require 'ostruct'
 
 describe CampaignExpirationWorker do
   describe '#perform' do
+    let(:mail)     { double('mail', deliver_later: true) }
     let(:campaign) { OpenStruct.new(id: 1, save: true) }
 
     before do
-      Campaign.stub(find: campaign)
+      allow(CampaignMailer).to receive(:expiration_notice)
+        .with(campaign.id).and_return(mail)
+
+      allow(Campaign).to receive(:find).and_return(campaign)
     end
 
     it 'loads the campaign' do
@@ -24,6 +28,10 @@ describe CampaignExpirationWorker do
       subject.perform(campaign.id)
     end
 
-    it 'notifies the creator'
+    it 'notifies the creator' do
+      expect(CampaignMailer).to receive(:expiration_notice)
+        .with(campaign.id).and_return(mail)
+      subject.perform(campaign.id)
+    end
   end
 end

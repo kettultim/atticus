@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 feature 'Viewing a campaign' do
+  subject { page }
   let(:campaign) {
     create(
       :campaign,
@@ -18,11 +19,15 @@ feature 'Viewing a campaign' do
     Timecop.return
   end
 
-  scenario 'it displays all the fields' do
-    expect(page).to have_content campaign.title
-    expect(page).to have_content campaign.details
-    expect(page).to have_content Money.new(campaign.funding_goal * 100, 'USD')
-    expect(page).to have_content(
-      ExpirationMessage.new(campaign.expires_at))
-  end
+  specify { expect_it.to have_content campaign.title }
+
+  specify { expect_it.to have_content campaign.details }
+
+  specify {
+    expect_it.to have_content Money.new(campaign.funding_goal * 100, 'USD')
+  }
+
+  specify {
+    expect(page).to have_content(ExpirationMessage.new(campaign.expires_at))
+  }
 end

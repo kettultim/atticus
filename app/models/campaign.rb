@@ -1,5 +1,5 @@
 class Campaign < ActiveRecord::Base
-  validates_presence_of :title, :details, :duration, :funding_goal
+  validates_presence_of :title, :details, :duration, :funding_goal, :zip_code
 
   PUBLICATION_STATES = %w(draft review approved published)
 
@@ -32,6 +32,10 @@ class Campaign < ActiveRecord::Base
   validates :publication_status, inclusion: { in: PUBLICATION_STATES }
   validates :funding_goal, inclusion: { in: 1..1_000_000 }
   validates :duration, inclusion: { in: [30, 60] }
+
+  validates :zip_code, format: {
+    with: /\d{5}(-\d{4})?/,
+    message: 'should be in the form 12345 or 12345-1234' }
 
   scope :drafts, -> { where(publication_status: 'draft') }
 

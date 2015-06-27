@@ -5,6 +5,7 @@ describe Campaign do
   specify { expect_it.to validate_presence_of :details }
   specify { expect_it.to validate_presence_of :duration }
   specify { expect_it.to validate_presence_of :funding_goal }
+  specify { expect_it.to validate_presence_of :zip_code }
   specify { expect_it.to belong_to :user }
 
   describe '#publish!' do
@@ -46,7 +47,8 @@ describe Campaign do
       described_class.new(
         publication_status: 'boiled',
         duration: 42,
-        funding_goal: -10
+        funding_goal: -10,
+        zip_code: 'bama'
       )
     }
 
@@ -65,5 +67,7 @@ describe Campaign do
     it 'must have a positive funding goal' do
       expect_it.to have(1).errors_on(:funding_goal)
     end
+
+    specify { expect_it.to have(1).errors_on(:zip_code) }
   end
 end

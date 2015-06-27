@@ -17,4 +17,13 @@ class CampaignMailer < ApplicationMailer
 
     mail to: @campaign.user_email, subject: subject
   end
+
+  def expiration_notice(campaign_id)
+    @campaign = Campaign.find(campaign_id)
+    @url = campaign_url(@campaign)
+
+    subject = "Your campaign #{@campaign.title} has ended"
+
+    mail to: @campaign.user_email, subject: subject
+  end
 end

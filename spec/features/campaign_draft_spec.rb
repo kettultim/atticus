@@ -16,6 +16,7 @@ feature 'Completing the new campaign form' do
     check 'campaign_allow_product_donations'
     select '30 days', from: 'Duration'
     fill_in 'Funding goal', with: '3500'
+    fill_in 'Zip code', with: '18512'
     click_button 'Create'
   end
 
@@ -30,7 +31,10 @@ feature 'Completing the new campaign form' do
     expect(campaign.publication_status).to eq('draft')
     expect(campaign.duration).to eq(30)
     expect(campaign.funding_goal).to eq(3500)
+    expect(campaign.zip_code).to eq('18512')
   end
+
+  scenario 'geocodes the campaign'
 
   scenario 'displays the campaign draft message' do
     expect(page).to have_content(msg(:campaign_draft))
