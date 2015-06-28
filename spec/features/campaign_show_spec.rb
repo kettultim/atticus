@@ -20,14 +20,15 @@ feature 'Viewing a campaign' do
   end
 
   specify { expect_it.to have_content campaign.title }
-
   specify { expect_it.to have_content campaign.details }
+  specify { expect_it.to have_content(campaign.city) }
+  specify { expect_it.to have_content(campaign.state) }
 
   specify {
     expect_it.to have_content Money.new(campaign.funding_goal * 100, 'USD')
   }
 
   specify {
-    expect(page).to have_content(ExpirationMessage.new(campaign.expires_at))
+    expect_it.to have_content(ExpirationMessage.new(campaign.expires_at))
   }
 end

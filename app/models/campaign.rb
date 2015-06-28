@@ -19,6 +19,7 @@ class Campaign < ActiveRecord::Base
     return unless errors.empty?
 
     location = Geocoder.search(zip_code, params: { countrycodes: 'us' }).first
+
     return unless location
 
     self.latitude = location.latitude
