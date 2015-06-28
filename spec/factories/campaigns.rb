@@ -6,7 +6,7 @@ FactoryGirl.define do
     publication_status 'published'
     duration 30
     funding_goal 2500
-    zip_code '20001'
+    zip_code '18512'
 
     factory :campaign_in_review do
       publication_status 'review'

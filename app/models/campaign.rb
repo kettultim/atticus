@@ -1,4 +1,6 @@
 class Campaign < ActiveRecord::Base
+  after_validation :resolve_location
+
   validates_presence_of :title, :details, :duration, :funding_goal, :zip_code
 
   PUBLICATION_STATES = %w(draft review approved published)
@@ -11,6 +13,18 @@ class Campaign < ActiveRecord::Base
 
   def self.valid_publication_status?(status)
     PUBLICATION_STATES.include? status
+  end
+
+  def resolve_location
+    return unless errors.empty?
+
+    location = Geocoder.search(zip_code, params: { countrycodes: 'us' }).first
+    return unless location
+
+    self.latitude = location.latitude
+    self.longitude = location.longitude
+    self.city = location.city
+    self.state = location.state_code
   end
 
   belongs_to :user

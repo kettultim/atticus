@@ -17,6 +17,7 @@ feature 'Completing the new campaign form' do
     select '30 days', from: 'Duration'
     fill_in 'Funding goal', with: '3500'
     fill_in 'Zip code', with: '18512'
+
     click_button 'Create'
   end
 
@@ -34,7 +35,13 @@ feature 'Completing the new campaign form' do
     expect(campaign.zip_code).to eq('18512')
   end
 
-  scenario 'geocodes the campaign'
+  scenario 'geocodes the campaign' do
+    campaign = Campaign.last
+    expect(campaign.latitude).not_to be_nil
+    expect(campaign.longitude).not_to be_nil
+    expect(campaign.city).to eq('Scranton')
+    expect(campaign.state).to eq('PA')
+  end
 
   scenario 'displays the campaign draft message' do
     expect(page).to have_content(msg(:campaign_draft))

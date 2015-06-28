@@ -10,6 +10,9 @@ gem 'simple_form', '3.1.0' # Nicer form field helpers
 gem 'sidekiq', '3.4.1' # Queuing for background jobs and mailers
 gem 'money', '6.5.1' # Easy formatting for money fields
 gem 'ruby-duration', '3.2.1' # Time conversion
+gem 'geocoder', '1.2.9' # Geocoding, duh!
+
+# gem 'gem-name', 'version' # Description of why we're using it
 
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'sass-rails', '~> 5.0'
@@ -58,6 +61,8 @@ group :test do
   gem 'shoulda-matchers', '2.8.0'
   gem 'capybara', '2.4.4'
   gem 'database_cleaner', '1.4.1'
-  gem 'launchy', '2.4.3'
+  gem 'launchy', '2.4.3' # save_and_open_page
   gem 'simplecov', require: false
+  #gem 'vcr' # Record web requests for fast future tests
+  #gem 'webmock'
 end
