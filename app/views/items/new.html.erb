@@ -1,0 +1,8 @@
+<h2>Item Donation</h2>
+<h3><%= @item.campaign_title %></h3>
+
+<%= simple_form_for @item, url: campaign_items_path(@campaign) do |f| %>
+  <%= render partial: 'form', locals: { f: f } %>
+
+  <%= f.submit 'Donate This Item' %>
+<% end %>

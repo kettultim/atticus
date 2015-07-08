@@ -1,0 +1,7 @@
+<% if @campaign.items.count > 0 %>
+  <h3>Donated Items</h3>
+
+  <% @campaign.items.each do |item| %>
+    <%= render partial: 'items/card', locals: { item: item } %>
+  <% end %>
+<% end %>

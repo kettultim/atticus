@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
          :trackable, :validatable
 
   has_many :campaigns
+  has_many :items
 
   def admin?
     role == 'admin'

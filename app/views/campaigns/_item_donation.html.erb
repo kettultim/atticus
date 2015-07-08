@@ -1,0 +1,4 @@
+<% if @campaign.allow_product_donations? %>
+  <h3>Want to help? Donate a Product?</h3>
+  <%= link_to 'Donate Item', new_campaign_item_path(@campaign) %>
+<% end %>

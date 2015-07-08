@@ -12,8 +12,8 @@ describe ApplicationPolicy do
 
   describe ApplicationPolicy::Scope do
     subject { described_class.new('user', 'scope') }
-    specify { expect(subject.resolve).to eq 'scope' }
 
+    specify { expect(subject.resolve).to eq 'scope' }
     specify { expect(subject.user).to eq('user') }
     specify { expect(subject.scope).to eq('scope') }
   end

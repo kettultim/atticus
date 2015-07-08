@@ -31,6 +31,8 @@ class Campaign < ActiveRecord::Base
   belongs_to :user
   delegate :email, to: :user, prefix: true
 
+  has_many :items
+
   # Logo and Banner Images
   has_attached_file :logo,
                     styles: { medium: '300x300#', thumb: '180x180#' },

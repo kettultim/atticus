@@ -10,6 +10,8 @@ will be notified when it is approved.}
 
 MESSAGES[:campaign_published] = %{The campaign has been published!}
 
+MESSAGES[:item_create] = 'Thanks! Your item has been donated.'
+
 MESSAGES[:general_error] = 'An error has occurred!'
 
 MESSAGES[:unauthorized] = 'Oops! You can\'t be here!'

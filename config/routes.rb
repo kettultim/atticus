@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :campaigns do
     resource :submission, only: [:create], controller: 'campaigns/submission'
     resource :launch, only: [:create], controller: 'campaigns/launch'
+    resources :items, only: [:new, :create]
   end
 
   resource :dashboard, only: [:show], controller: 'dashboard'
