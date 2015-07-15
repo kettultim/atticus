@@ -1,2 +1,17 @@
 <%= f.label :name %>
 <%= f.text_field :name %>
+
+<%= f.label :description %>
+<%= f.text_area :description %>
+
+<%= f.label :minimum_price %>
+<%= f.number_field :minimum_price, in: 1..10_000, step: 1 %>
+
+<%= f.label :shipping_fee %>
+<%= f.number_field :shipping_fee, in: 0..10_000, step: 1 %>
+
+<%= f.label :payment_email %>
+<%= f.text_field :payment_email %>
+
+<%= f.check_box :disclaimer %>
+I agree to ship this item in a timely manner to whoever purchases it.

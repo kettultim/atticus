@@ -16,11 +16,20 @@ class ItemsController < ApplicationController
 
   def load_campaign_and_build_item
     @campaign = Campaign.find(params[:campaign_id])
-    @item = current_user.items.new(item_params.merge(campaign: @campaign))
+
+    @item = current_user.items.new_with_disclaimer(
+      item_params.merge(campaign: @campaign)
+    )
+
     authorize @item
   end
 
   def item_params
-    params[:item] ? params.require(:item).permit(:name) : {}
+    return {} unless params[:item]
+
+    params.require(:item).permit(
+      :name, :description, :minimum_price, :shipping_fee, :payment_email,
+      :disclaimer
+    )
   end
 end
