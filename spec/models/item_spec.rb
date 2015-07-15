@@ -4,6 +4,7 @@ RSpec.describe Item, type: :model do
   describe 'Relations' do
     specify { expect_it.to belong_to :user }
     specify { expect_it.to belong_to :campaign }
+    specify { expect_it.to have_many :images }
   end
 
   describe 'Validations' do
@@ -23,5 +24,12 @@ RSpec.describe Item, type: :model do
 
     specify { expect_it.to respond_to :disclaimer }
     specify { expect_it.to have(1).errors_on(:disclaimer) }
+  end
+
+  describe 'Factories' do
+    context 'Item with Images' do
+      subject { create(:item_with_images) }
+      specify { expect(subject.images.count).to eq 3 }
+    end
   end
 end

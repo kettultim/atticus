@@ -9,8 +9,11 @@ class Item < ActiveRecord::Base
 
   # Relations
   belongs_to :user
-
   belongs_to :campaign
+  has_many :images, class_name: 'Item::Image', dependent: :destroy
+  accepts_nested_attributes_for :images
+
+  # Delegation
   delegate :title, to: :campaign, prefix: true
 
   def self.new_with_disclaimer(attrs = {})

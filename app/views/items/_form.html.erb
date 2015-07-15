@@ -13,5 +13,9 @@
 <%= f.label :payment_email %>
 <%= f.text_field :payment_email %>
 
+<%= f.simple_fields_for :images, @item.images.build do |image_fields| %>
+  <%= image_fields.input :attachment, as: :file, label: 'Image' %>
+<% end %>
+
 <%= f.check_box :disclaimer %>
 I agree to ship this item in a timely manner to whoever purchases it.

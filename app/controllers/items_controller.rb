@@ -25,7 +25,7 @@ class ItemsController < ApplicationController
 
     params.require(:item).permit(
       :name, :description, :minimum_price, :shipping_fee,
-      :payment_email, :disclaimer
+      :payment_email, :disclaimer, images_attributes: [:attachment]
     ).merge(campaign: @campaign)
   end
 end

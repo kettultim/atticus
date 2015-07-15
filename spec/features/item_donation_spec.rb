@@ -9,12 +9,15 @@ feature 'User donates an item' do
     login_as(user)
     visit campaign_path(campaign)
     click_link 'Donate Item'
+
     fill_in 'Name', with: 'The Elements of Style'
     fill_in 'Description', with: 'blah'
     fill_in 'Minimum price', with: '42'
     fill_in 'Shipping fee', with: '5'
     fill_in 'Payment email', with: 'joe@smith.com'
+    attach_file 'Image', fixture_image(:thumbnail)
     check 'item_disclaimer'
+
     click_button 'Donate This Item'
   end
 
@@ -24,8 +27,8 @@ feature 'User donates an item' do
   specify { expect(item.minimum_price).to eq(42) }
   specify { expect(item.shipping_fee).to eq(5) }
   specify { expect(item.payment_email).to eq('joe@smith.com') }
+  specify { expect(item.images.first.attachment).to exist }
 
   specify { expect(current_path).to eq(campaign_path(campaign)) }
-  specify { expect(page).to have_content(Item.last.name) }
   specify { expect(page).to have_content msg(:item_create) }
 end

@@ -17,7 +17,7 @@ feature 'Completing the new campaign form' do
     select '30 days', from: 'Duration'
     fill_in 'Funding goal', with: '3500'
     fill_in 'Zip code', with: '18512'
-
+    
     click_button 'Create'
   end
 
