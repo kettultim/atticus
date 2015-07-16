@@ -22,4 +22,16 @@ class Item < ActiveRecord::Base
 
     item
   end
+
+  def has_image?
+    image
+  end
+
+  def image
+    images.first
+  end
+
+  def image_url(style = nil)
+    image && image.url(style)
+  end
 end

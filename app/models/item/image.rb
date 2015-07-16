@@ -12,4 +12,6 @@ class Item::Image < ActiveRecord::Base
     :attachment,
     content_type: %r{\Aimage\/.*\Z}
   )
+
+  delegate :url, to: :attachment
 end

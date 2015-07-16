@@ -21,6 +21,7 @@ feature 'Viewing a campaign' do
 
   it 'displays all items' do
     campaign.items.each do |item|
+      expect_it.to have_image item.image_url(:medium)
       expect_it.to have_content item.name
       expect_it.to have_content item.description
       expect_it.to have_content money item.minimum_price
