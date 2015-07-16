@@ -1,1 +1,8 @@
-<%= item.name %>
+<h3><%= item.name %></h3>
+<p><%= simple_format item.description %></p>
+
+<h4>Minimum Price</h4>
+<p><%= money item.minimum_price %></p>
+
+<h4>Shipping Fee</h4>
+<p><%= shipping_fee item %></p>
