@@ -2,5 +2,15 @@
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
 */
+
+//Load Bootstrap
 @import '../bower_components/bootstrap-sass/assets/stylesheets/bootstrap-sprockets';
- @import '../bower_components/bootstrap-sass/assets/stylesheets/bootstrap';
+@import '../bower_components/bootstrap-sass/assets/stylesheets/bootstrap';
+
+//Load the partials
+@import 'partials/header.scss';
+@import 'partials/nav.scss';
+@import 'partials/footer.scss';
+
+//Load specific page styles
+@import 'pages/homepage.scss';

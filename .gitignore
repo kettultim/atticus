@@ -29,4 +29,5 @@ coverage
 .secret
 
 /.sass-cache
+/app/assets/.sass-cache
 /node_modules
