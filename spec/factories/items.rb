@@ -6,6 +6,7 @@ FactoryGirl.define do
     description Faker::Lorem.paragraph
     minimum_price 10
     shipping_fee 5
+    quantity 3
     payment_email Faker::Internet.email
 
     factory :item_with_images do

@@ -15,6 +15,7 @@ RSpec.describe Item, type: :model do
     specify { expect_it.to validate_presence_of :description }
     specify { expect_it.to validate_presence_of :minimum_price }
     specify { expect_it.to validate_presence_of :shipping_fee }
+    specify { expect_it.to validate_presence_of :quantity }
     specify { expect_it.to validate_presence_of :payment_email }
   end
 

@@ -24,7 +24,7 @@ class ItemsController < ApplicationController
     return { campaign: @campaign} unless params[:item]
 
     params.require(:item).permit(
-      :name, :description, :minimum_price, :shipping_fee,
+      :name, :description, :minimum_price, :shipping_fee, :quantity,
       :payment_email, :disclaimer, images_attributes: [:attachment]
     ).merge(campaign: @campaign)
   end
