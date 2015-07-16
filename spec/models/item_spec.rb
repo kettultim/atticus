@@ -29,7 +29,7 @@ RSpec.describe Item, type: :model do
   describe 'Factories' do
     context 'Item with Images' do
       subject { create(:item_with_images) }
-      specify { expect(subject.images.count).to eq 3 }
+      specify { expect(subject.images.count).to eq 1 }
     end
   end
 end

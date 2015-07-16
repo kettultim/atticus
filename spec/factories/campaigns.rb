@@ -14,5 +14,11 @@ FactoryGirl.define do
     factory :campaign_in_review do
       publication_status 'review'
     end
+
+    factory :campaign_with_items do
+      after :create do |campaign|
+        create_list(:item_with_images, 3, campaign: campaign)
+      end
+    end
   end
 end

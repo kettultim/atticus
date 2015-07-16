@@ -5,7 +5,7 @@ class Campaigns::LaunchController < ApplicationController
     campaign = current_user.campaigns.find(params[:campaign_id])
     authorize campaign, :launch?
 
-    if campaign.publish!
+    if campaign.publish
       flash[:notice] = msg(:campaign_published)
     else
       flash[:alert] = msg(:general_error)

@@ -10,9 +10,7 @@ FactoryGirl.define do
 
     factory :item_with_images do
       after :create do |item|
-        file = File.open(fixture_image(:thumbnail))
-
-        3.times { item.images.create(attachment: file) }
+        create_list(:item_image, 1, item: item)
       end
     end
   end

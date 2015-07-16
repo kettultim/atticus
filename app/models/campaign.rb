@@ -61,7 +61,7 @@ class Campaign < ActiveRecord::Base
     save
   end
 
-  def publish!
+  def publish
     self.published_at = Time.now
     self.expires_at = published_at + duration.days
     self.publication_status = 'published'
