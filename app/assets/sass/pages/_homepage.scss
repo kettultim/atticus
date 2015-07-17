@@ -1,3 +1,92 @@
 // Place all the styles related to the homepage controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.charity-list {
+  clear: both;
+  margin:0;
+  border:0;
+  ul {
+    margin:0;
+    padding:0;
+    li {
+      display:inline-block;
+      margin:.3em;
+      &:last-child {
+        position: relative;
+        top:-1.5em;
+      }
+    }
+  }
+  form {
+    input {
+      padding:.5em;
+      &[type="text"] {
+        width:70%;
+      }
+    }
+  }
+}
+
+.product-grid {
+  .product {
+    max-width:50%;
+    float:left;
+    padding:.3em;
+  }
+  .product-img {
+    position: relative;
+    float: left;
+    img {
+      min-height: 8em;
+    }
+    .overlay {
+      position: absolute;
+      top:1em;
+      left:1em;
+      .tinytext,
+      .charity-name {
+        font-size: 8px;
+        text-shadow:1px 1px 0 #white;
+        color: #333;
+        line-height: normal;
+        img {
+          min-height: 0;
+        }
+      }
+    }
+    .product-name {
+      h4 {
+        margin:0;
+      }
+    }
+    .price {
+      clear:both;
+      padding:.3em .6em;
+      float:left;
+    }
+    button {
+      float:right;
+      background: green;
+      color:white;
+    }
+  }
+}
+
+.featured-campaign {
+  .left,
+  .right {
+    float:left;
+  }
+  .right {
+    margin-top:2em;
+    padding-top:2em;
+    border-top: 1px solid #999;
+    .tinytext {
+      font-size: 11px;
+    }
+    .charity-name {
+      font-size: 20px;
+    }
+  }
+}

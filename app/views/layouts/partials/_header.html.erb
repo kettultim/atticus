@@ -1,27 +1,13 @@
-<a href="/" class="logo">
-  <img src="images/logo.png"/>
-</a>
-<div class="search">
-  <select>
-    <option>Shop by category</option>
-    <option>Shop by charity</option>
-    <option>Shop by type</option>
-</select>
-<%= render 'layouts/partials/nav' %>
-<div class="search">
-  <form action="">
-    <input type="text" placeholder="Search charity/products/categories" />
-    <input type="submit">
-  </form>
-</div>
+<div class="top-bar navbar navbar-inverse navbar-fixed-top col-md-12 col-lg-12">
+  <!-- <a href="/" class="logo col-md-2">
+    <img src="images/logo.png"/>
+  </a> -->
+  <%= render 'layouts/partials/nav' %>
 
-<% if notice %>
-  <p class="alert alert-success"><%= notice %></p>
-<% end %>
-<% if alert %>
-  <p class="alert alert-danger"><%= alert %></p>
-<% end %>
-
-<div class="page-title">
-  Page Title
+  <% if notice %>
+    <p class="alert alert-success"><%= notice %></p>
+  <% end %>
+  <% if alert %>
+    <p class="alert alert-danger"><%= alert %></p>
+  <% end %>
 </div>

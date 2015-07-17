@@ -1,27 +1,68 @@
-<nav>
-  <li><a href="#">About</a></li>
-  <li><a href="#">Charity Signup</a></li>
-  <li><a href="#">Seller Login</a></li>
+  <!-- Navigation -->
+  <nav class="col-lg-12" role="navigation">
+    <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Atticus</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <div class="search-menu col-md-2">
+        <form action="">
+          <select class="form-control">
+            <option value="category">Shop by category</option>
+            <option value="charity">Shop by charity</option>
+            <option value="type">Shop by type</option>
+          </select>
+        </form>
+      </div>
+      <div class="col-md-4">
+        <ul class="nav navbar-nav">
+          <li><a href="#">About</a></li>
+          <li><a href="#">Charity Signup</a></li>
+          <li><a href="#">Seller Login</a></li>
+        </ul>
+        <div class="mini-profile">
+          <img src="http://placehold.it/30x30" class="profile-thumb" />
+          <p class="navbar-text">
+            <% if user_signed_in? %>
+            Logged in as <strong><%= current_user.email %></strong>.
+            <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
+            <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+            <% else %>
+            <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
+            <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+            <% end %>
+          </p>
+        </div>
+      </div>
+      <div class="cart-menu col-md-2">
+        <a href="#" class="icon-cart">Cart (3)</a>
+        <a href="#" class="icon-checkout">Checkout</a>
+      </div>
+      
+      <div class="social col-md-2">
+        <a href="#" class="fb"></a>
+        <a href="#" class="tw"></a>
+        <a href="#" class="in"></a>
+      </div>
+
+      <div class="search col-md-2">
+        <form action="">
+          <input type="text" placeholder="Search charity/products/categories" />
+          <input type="submit">
+        </form>
+      </div>
+
+    </div>
+    <!-- /.navbar-collapse -->
+  </div>
+  <!-- /.container -->
 </nav>
-<div class="mini-profile">
-  <img src="profile-thumb.png" class="profile-thumb" />
-</div>
-<div class="cart-menu">
-  <a href="#" class="icon-cart">Cart (3)</a>
-  <a href="#" class="icon-checkout">Checkout</a>
-</div>
-<p class="navbar-text pull-right">
-  <% if user_signed_in? %>
-  Logged in as <strong><%= current_user.email %></strong>.
-  <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
-  <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
-  <% else %>
-  <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
-  <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
-  <% end %>
-</p>
-<div class="social">
-  <a href="#" class="fb"></a>
-  <a href="#" class="tw"></a>
-  <a href="#" class="in"></a>
-</div>
