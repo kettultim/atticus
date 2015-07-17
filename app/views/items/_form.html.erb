@@ -10,6 +10,9 @@
 <%= f.label :shipping_fee %>
 <%= f.number_field :shipping_fee, in: 0..10_000, step: 1 %>
 
+<%= f.label :quantity %>
+<%= f.number_field :quantity, in: 0..10_000, step: 1 %>
+
 <%= f.label :payment_email %>
 <%= f.text_field :payment_email %>
 

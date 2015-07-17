@@ -1,34 +1,31 @@
 require 'rails_helper'
 
 feature 'Viewing a campaign' do
+  include ApplicationHelper
+
   subject { page }
-  let(:campaign) {
-    create(
-      :campaign,
-      publication_status: 'published',
-      expires_at: 3.days.from_now
-    )
-  }
+  let(:campaign) { create :campaign_with_items }
 
-  before do
+  around do |example|
     Timecop.freeze
-    visit campaign_path(campaign)
-  end
-
-  after do
+    visit campaign_path campaign
+    example.run
     Timecop.return
   end
 
   specify { expect_it.to have_content campaign.title }
   specify { expect_it.to have_content campaign.details }
-  specify { expect_it.to have_content(campaign.city) }
-  specify { expect_it.to have_content(campaign.state) }
+  specify { expect_it.to have_content location campaign }
+  specify { expect_it.to have_content money campaign.funding_goal }
+  specify { expect_it.to have_content expiration_message campaign }
 
-  specify {
-    expect_it.to have_content Money.new(campaign.funding_goal * 100, 'USD')
-  }
-
-  specify {
-    expect_it.to have_content(ExpirationMessage.new(campaign.expires_at))
-  }
+  it 'displays all items' do
+    campaign.items.each do |item|
+      expect_it.to have_image item.image_url(:medium)
+      expect_it.to have_content item.name
+      expect_it.to have_content item.description
+      expect_it.to have_content money item.minimum_price
+      expect_it.to have_content shipping_fee item
+    end
+  end
 end

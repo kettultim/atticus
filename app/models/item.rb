@@ -1,10 +1,26 @@
 class Item < ActiveRecord::Base
   # Validations
   validates_presence_of :name, :user_id, :campaign_id, :description,
-  :minimum_price, :shipping_fee, :payment_email
+  :minimum_price, :shipping_fee, :payment_email, :quantity
 
-  validates :minimum_price, inclusion: { in: 1..10_000 }
-  validates :shipping_fee, inclusion: { in: 0..10_000 }
+  validates :minimum_price, numericality: {
+    only_integer: true,
+    greater_than_or_equal_to: 1,
+    less_than_or_equal_to: 10_000
+  }
+
+  validates :shipping_fee, numericality: {
+    only_integer: true,
+    greater_than_or_equal_to: 0,
+    less_than_or_equal_to: 10_000
+  }
+
+  validates :quantity, numericality: {
+    only_integer: true,
+    greater_than_or_equal_to: 0,
+    less_than_or_equal_to: 10_000
+  }
+
   validates :payment_email, email: true
 
   # Relations
@@ -21,5 +37,17 @@ class Item < ActiveRecord::Base
     item.assign_attributes(attrs)
 
     item
+  end
+
+  def has_image?
+    image
+  end
+
+  def image
+    images.first
+  end
+
+  def image_url(style = nil)
+    image && image.url(style)
   end
 end

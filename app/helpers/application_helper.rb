@@ -3,15 +3,23 @@ module ApplicationHelper
     Money.new(dollars * 100, 'USD').to_s
   end
 
-  def campaign_expiration_message(campaign)
-    ExpirationMessage.new(campaign.expires_at).to_s
+  def expiration_message(object)
+    ExpirationMessage.new(object.expires_at).to_s
   end
 
-  def campaign_location(campaign)
-    if campaign.city && campaign.state
-      "#{campaign.city}, #{campaign.state}"
+  def location(object)
+    if object.city && object.state
+      "#{object.city}, #{object.state}"
     else
-      "#{campaign.zip_code}"
+      "#{object.zip_code}"
+    end
+  end
+
+  def shipping_fee(object, method = :shipping_fee)
+    if object.send(method) > 0
+      money(object.send(method))
+    else
+      'FREE SHIPPING'
     end
   end
 end

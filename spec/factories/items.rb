@@ -6,13 +6,12 @@ FactoryGirl.define do
     description Faker::Lorem.paragraph
     minimum_price 10
     shipping_fee 5
+    quantity 3
     payment_email Faker::Internet.email
 
     factory :item_with_images do
       after :create do |item|
-        file = File.open(fixture_image(:thumbnail))
-
-        3.times { item.images.create(attachment: file) }
+        create_list(:item_image, 1, item: item)
       end
     end
   end
